@@ -1,0 +1,37 @@
+{
+    "name": "wholly",
+    "title": "Highlight whole table column.",
+    "description": "Hover event is added to the table that sets wholly class to all columns.",
+    "keywords": [
+        "table",
+        "column",
+        "highlight",
+        "hover"
+    ],
+    "version": "0.0.1",
+    "author": {
+        "name": "Gajus Kuizinas",
+        "email": "gk@anuary.com",
+        "url": "https://github.com/gajus"
+    },
+    "maintainers": [
+        {
+            "name": "Gajus Kuizinas",
+            "email": "gk@anuary.com",
+            "url": "https://github.com/gajus"
+        }
+    ],
+    "licenses": [
+        {
+            "type": "BSD 2-Clause",
+            "url": "https://raw.githubusercontent.com/gajus/wholly/master/LICENSE"
+        }
+    ],
+    "bugs": "https://github.com/gajus/wholly/issues",
+    "homepage": "https://github.com/gajus/wholly",
+    "docs": "https://github.com/gajus/wholly",
+    "download": "https://github.com/gajus/wholly/archive/master.zip",
+    "dependencies": {
+        "jquery": ">=1.11.0"
+    }
+}
