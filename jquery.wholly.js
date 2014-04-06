@@ -1,4 +1,8 @@
-(function () {
+/**
+ * jquery.wholly.js
+ * https://github.com/gajus/wholly
+ */
+(function ($) {
     $.fn.wholly = function () {
         var calcRowWidth,
             calcTableWidth,
@@ -126,4 +130,4 @@
             });
         });
     };
-}());
+}(jQuery));
