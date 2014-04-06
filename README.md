@@ -18,7 +18,7 @@ Most often you'd use Wholly to highlight the entire column of the selected cell.
 
 ![Table using Wholly](docs/static/image/example-use-case.png)
 
-However, Wholly is not limited to setting a particular style. The custom event hooks allows you to select the entire column and can be used to copy the data, for selecting multiple columns, etc.
+However, Wholly is not limited to setting a particular style. The custom event hook allows you to select the entire column and can be used to copy the data, for selecting multiple columns, etc.
 
 ## Usage
 
