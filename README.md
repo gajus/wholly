@@ -8,6 +8,8 @@ jQuery plugin for triggering table column `mouseenter` and `mouseleave` events. 
 
 Instantiating wholly will add two new events `wholly.mouseenter` and `wholly.mouseleave` that you can use to customise table behaviour. In the below example, Wholly is used for highlighting the entire table column.
 
+There are no additional settings.
+
 ```js
 $(function () {
     var table = $('table');
