@@ -54,7 +54,7 @@
                 tableWidth = calcTableWidth(table),
                 tableHeight = table.find('tr').length,
                 tableIndex = generateTableIndexTemplate(tableWidth, tableHeight),
-                lastColumn;
+                column;
 
             //console.log( tableIndex, tableIndex.length );
             //console.log('tableWidth:', tableWidth, 'tableHeight:', tableHeight);
@@ -101,7 +101,7 @@
                     highlightCellFrom,
                     highlightCellTo;
 
-                lastColumn = $(this);
+                column = $(this);
 
                 $(this).prevAll().each(function () {
                     var colspan = parseInt($(this).attr('colspan'), 10) || 1;
@@ -114,15 +114,15 @@
 
                 $.each(tableIndex, function (n, rowIndex) {
                     $.each(rowIndex.slice(highlightCellFrom, highlightCellTo), function (n, cell) {
-                        lastColumn = lastColumn.add(cell);
+                        column = column.add(cell);
                     });                    
                 });
 
-                lastColumn.addClass('wholly');
+                column.trigger('wholly.mouseenter');
             });
 
             table.on('mouseleave', 'td, th', function () {
-                lastColumn.removeClass('wholly');
+                column.trigger('wholly.mouseleave');
             });
         });
     };
