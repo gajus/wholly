@@ -4,7 +4,21 @@ jQuery plugin for triggering table column `mouseenter` and `mouseleave` events. 
 
 [Interactive demo](http://gajus.com/wholly/demo/).
 
+## How it works?
+
+If you want to support `colspan` and `rowspan`, then first you need to build table cell index, ie. matrix that identifies cell positition in every row regardless of the markup. Then you need to track events of all the table cells of interest and calculate their offset in the matrix and the columns that share the vertical index.
+
+The resulting lookup is illustrated in the following animation:
+
 ![Wholly highlighting](docs/static/image/wholly.gif)
+
+## Use case
+
+Most often you'd use Wholly to highlight the entire column of the selected cell.
+
+![Table using Wholly](docs/static/image/example-use-case.png)
+
+However, Wholly is not limited to setting a particular style. The custom event hooks allows you to select the entire column and can be used to copy the data, for selecting multiple columns, etc.
 
 ## Usage
 
