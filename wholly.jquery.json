@@ -1,7 +1,7 @@
 {
     "name": "wholly",
     "title": "Table column events hook.",
-    "description": "jQuery plugin for triggering table column mouseenter and mouseleave events. Wholly is used for highlighting the entire table column. Wholly supports tables with colspan and rowspan attributes.",
+    "description": "A jQuery plugin to highlight table rows and columns on hover with rowspan and colspan support.",
     "keywords": [
         "table",
         "column",
