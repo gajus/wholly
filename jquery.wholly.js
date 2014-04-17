@@ -1,14 +1,17 @@
 /**
- * jquery.wholly.js
+ * jquery.wholly.js 0.1.2
  * https://github.com/gajus/wholly
  */
 (function ($) {
+    "use strict";
+
     var debug = false;
 
     $.fn.wholly = function () {
         var calcRowWidth,
             calcTableWidth,
-            generateTableIndexTemplate;
+            generateTableIndexTemplate,
+            mapTableToIndex;
         
         /**
          * @param {Object} table jQuery selector referencing table.
@@ -133,14 +136,9 @@
 
                     tempData = cell.data('wholly.index');
 
-                    if (typeof tempData === 'undefined') {
+                    if (tempData === undefined) {
                         cell.data('wholly.index', x);
                     }
-
-                    /*tempData = tempData || {};
-                    tempData[y] = typeof tempData[y] === 'undefined' ? x : tempData[y];
-
-                    cell.data('wholly.index', tempData);*/
                 });
 
                 if (debug) {
