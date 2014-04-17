@@ -12,6 +12,15 @@ The resulting lookup is illustrated in the following animation:
 
 ![Wholly highlighting](docs/static/image/wholly.gif)
 
+## Why not CSS?
+
+There are at least few ways to achive column highlighting using just CSS or with little JavaScript, e.g.
+
+* http://stackoverflow.com/a/11175979/368691, CSS only solution using pseudo elements.
+* http://www.cssnewbie.com/simple-table-column-highlighting/#.U1Ywa1GSwe4, JavaScript together with [HTML table column element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/col).
+
+Neither of the above solutions support `rowspan` or `colspan`. In essence, neither of the above will work if you have header groups, mergend columns, a summarising table footer, or similar table layout variation. Wholly supports `colspan` and `rowspan` anywhere in `<table>` and covers all of the mentioned cases.
+
 ## Use case
 
 Most often you'd use Wholly to highlight the entire column of the selected cell.
