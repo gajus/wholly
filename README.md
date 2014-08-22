@@ -1,6 +1,6 @@
 # Wholly
 
-jQuery plugin for triggering table column `mouseenter` and `mouseleave` events. Wholly is used for highlighting the entire table column. Wholly supports tables with `colspan` and `rowspan` attributes.
+jQuery plugin for triggering table column `mouseenter` and `mouseleave` events. Wholly is used for highlighting the entire table column or row. Wholly supports layouts that utilize with `colspan` and `rowspan`.
 
 [Interactive demo](http://gajus.com/wholly/demo/).
 
@@ -10,7 +10,7 @@ If you want to support `colspan` and `rowspan`, then first you need to build tab
 
 The resulting lookup is illustrated in the following animation:
 
-![Wholly highlighting](docs/static/image/wholly.gif)
+![Wholly highlighting a matrix](docs/static/image/animation.gif)
 
 ## Why not CSS?
 
@@ -50,3 +50,19 @@ $(function () {
     });
 });
 ```
+
+ //Table representation in a matrix ignoring rowspan and colspan.
+
+    /**
+     * Generates a table with a number of rows and cells equal to the subject table.
+     * The generated table rowspan and colspan of the subject table are extended
+     * into separate rows and columns.
+
+Minor optimization.
+Improved documentation.
+Added test cases.
+Using grunt to minify the JS.
+improved naming convention
+
+
+* ability to .remove() wholly.
