@@ -8,7 +8,7 @@
         "highlight",
         "hover"
     ],
-    "version": "0.1.2",
+    "version": "2.0.0",
     "author": {
         "name": "Gajus Kuizinas",
         "email": "gk@anuary.com",
@@ -33,6 +33,6 @@
     "docs": "https://github.com/gajus/wholly",
     "download": "https://github.com/gajus/wholly/archive/master.zip",
     "dependencies": {
-        "jquery": ">=1.11.0"
+        "jquery": "^1.11.0"
     }
 }

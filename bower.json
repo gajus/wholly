@@ -6,6 +6,9 @@
     "dependencies": {
         "jquery": "^1"
     },
+    "devDependencies": {
+        "jasmine-jquery": "^2.0.3"
+    },
     "keywords": [
         "table",
         "column",

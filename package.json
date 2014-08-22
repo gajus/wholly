@@ -1,0 +1,22 @@
+{
+    "name": "wholly",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/gajus/wholly.git"
+    },
+    "version": "2.0.0",
+    "devDependencies": {
+        "karma": "^0.12.22",
+        "karma-jasmine": "~0.2.2",
+        "gulp": "^3.8.7",
+        "gulp-util": "^3.0.0",
+        "gulp-uglify": "^0.3.1",
+        "gulp-rename": "^1.2.0",
+        "gulp-header": "^1.0.5",
+        "del": "^0.1.2",
+        "browserify-handbook": "^1.6.0"
+    },
+    "scrips": {
+        "test": "gulp travis"
+    }
+}
