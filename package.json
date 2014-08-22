@@ -15,7 +15,9 @@
     "gulp-header": "^1.0.5",
     "del": "^0.1.2",
     "browserify-handbook": "^1.6.0",
-    "karma-phantomjs-launcher": "^0.1.4"
+    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-coveralls": "^0.1.4",
+    "karma-coverage": "^0.2.6"
   },
   "scrips": {
     "test": "gulp travis"
