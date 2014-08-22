@@ -8,6 +8,7 @@
   "devDependencies": {
     "karma": "^0.12.22",
     "karma-jasmine": "~0.2.2",
+    "jasmine-jquery": "^2.0.5",
     "gulp": "^3.8.7",
     "gulp-util": "^3.0.0",
     "gulp-uglify": "^0.3.1",

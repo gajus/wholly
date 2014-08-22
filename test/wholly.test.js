@@ -5,9 +5,9 @@ describe('Wholly', function() {
         loadFixtures('test/fixture/basic-table.html');
     });
 
-    /*afterEach(function () {
+    afterEach(function () {
 
-    });*/
+    });
 
     it('throws an Error when applied to anything that is not table.', function () {
         expect(function () {
