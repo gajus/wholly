@@ -1,5 +1,14 @@
 {
     "name": "wholly",
-    "version": "1.0.0",
-    "main": "jquery.wholly.min.js"
+    "version": "2.0.0",
+    "main": "dist/wholly.min.js",
+    "license": "BSD-3-Clause",
+    "dependencies": {
+        "jquery": "^1"
+    },
+    "keywords": [
+        "table",
+        "column",
+        "highlight"
+    ]
 }
