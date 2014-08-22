@@ -27,6 +27,10 @@
         table.on('wholly.mouseleave-vertical', 'td', function () {
             $(this).removeClass('wholly-highlight-vertical');
         });
+
+        $('table td').eq(0).trigger('mouseenter');
+        $('table td').eq(12).trigger('mouseenter');
+        $('table td').eq(24).trigger('mouseenter');
     });
     </script>
 </head>

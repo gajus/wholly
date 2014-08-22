@@ -4,10 +4,7 @@
     "main": "dist/wholly.min.js",
     "license": "BSD-3-Clause",
     "dependencies": {
-        "jquery": "^1"
-    },
-    "devDependencies": {
-        "jasmine-jquery": "^2.0.3"
+        "jquery": ">=1"
     },
     "keywords": [
         "table",

@@ -33,6 +33,6 @@
     "docs": "https://github.com/gajus/wholly",
     "download": "https://github.com/gajus/wholly/archive/master.zip",
     "dependencies": {
-        "jquery": "^1.11.0"
+        "jquery": ">=1"
     }
 }
