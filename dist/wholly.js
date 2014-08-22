@@ -9,7 +9,7 @@
     var /**
          * Enables console logging.
          */
-        debug = false,
+        debug = true,
         /**
          * Index of tables that are using Wholly.
          * Used to make sure that same table is not using Wholly twice.
@@ -52,45 +52,57 @@
     };
 
     /**
-     * Table index is a representation of the subject table, where the rowspan and colspan
-     * properties of the subject table are expanded. As a result, multiple index positions
+     * Matrix is a representation of the subject table, where table cells either
+     * with rowspan or colspan are broken apiece. In the matrix, multiple cells
      * can refer to a single cell, row, rowspan or colspan in the subject table.
      * 
-     * @param {Number} width Number of cells.
-     * @param {Number} height Number of rows.
-     * @returns {Array} Table representation in an array matrix.
+     * @param {Object} row jQuery selector referencing a table row.
+     * @returns {Array}
      */
-    wholly.generateTableIndexTemplate = function (width, height) {
-        var tableIndex = [];
-
-        while (height--) {
-            tableIndex.push(new Array(width));
-        }
+    wholly.generateTableMatrix = function (table) {
+        var width = wholly.calcTableMaxCellLength(table),
+            height = table.find('tr').length;
 
         if (debug) {
-            console.log('generateTableIndexTemplate', 'tableWidth:', tableWidth, 'tableHeight:', tableHeight);
+            console.log('generateTableMatrix', 'width:', width, 'height:', height);
         }
 
-        return tableIndex;
+        return wholly.generateMatrix(width, height);
     };
 
     /**
-     * 
-     * 
-     * @param {Object} table jQuery selector referencing a table.
-     * @param {Array} tableIndex Table matrix (index) produced using the wholly.generateTableIndexTemplate. This variable is changed by reference.
+     * @see http://stackoverflow.com/questions/8301400/how-do-you-easily-create-empty-matrices-javascript
+     * @param {Number} width
+     * @param {Number} height
+     * @returns {Array}
      */
-    wholly.indexTable = function (table, tableIndex) {
-        var rows = table.find('tr');
+    wholly.generateMatrix = function (width, height) {
+        var matrix = [];
+
+        while (height--) {
+            matrix.push(new Array(width));
+        }
+
+        return matrix;
+    };
+
+    /**
+     * @param {Object} table jQuery selector referencing a table.
+     * @return {Object}
+     */
+    wholly.indexTable = function (table) {
+        var tableIndex = wholly.generateTableMatrix(table),
+            rows = table.find('tr');
 
         // Iterate through each hypothetical table row.
         $.each(tableIndex, function (y) {
             var row = rows.eq(y),
-                rowChildren = row.children(),
+                // Note that columns.length <= table width
+                columns = row.children(),
                 cellIndex = 0;
 
             if (debug) {
-                console.groupCollapsed('Table row.', 'y:', y, 'rowChildren.length:', rowChildren.length);
+                console.groupCollapsed('Table row.', 'y:', y, 'columns.length:', columns.length);
             }
 
             // Iterate through each hypothetical table row column.
@@ -100,18 +112,17 @@
                     colspan,
                     rowspan,
                     i,
-                    j,
-                    tempData;
+                    j;
 
                 // Table matrix is iterated left to right, top to bottom. It might be that cell has
-                // been assigned a value already because previous row-cell had "rowspan" property,
+                // been assigned a value already because previous row-cell had a "rowspan" property,
                 // possibly together with "colspan".
                 if (cell) {
                     if (debug) {
-                        console.log('x:', cellIndex, 'cell:', cell[0]);
+                        console.log('x:', cellIndex, 'cell:', cell[0], 'state: already indexed');
                     }
                 } else {
-                    cell = rowChildren.eq(cellIndex++);
+                    cell = columns.eq(cellIndex++);
 
                     colspan = parseInt(cell.attr('colspan'), 10) || 1;
                     rowspan = parseInt(cell.attr('rowspan'), 10) || 1;
@@ -130,7 +141,7 @@
                                 console.log('relative row:', i, 'relative cell:', j, 'absolute row:', y + i, 'absolute cell:', x + j);
                             }
                             
-                            tableIndex[y + i][x + j] = cell;
+                            tableIndex[y + i][x + j] = cell[0];
                         }
                     }
 
@@ -139,10 +150,8 @@
                     }
                 }
 
-                tempData = cell.data('wholly.index');
-
-                if (tempData === undefined) {
-                    cell.data('wholly.index', x);
+                if (cell.data && cell.data('wholly.offsetInMatrix') === undefined) {
+                    cell.data('wholly.offsetInMatrix', [x, y]);
                 }
             });
 
@@ -150,17 +159,25 @@
                 console.groupEnd();
             }
         });
+
+        return tableIndex;
     };
+
+
 
     $.fn.wholly = function () {
         this.each(function () {
             var table,
-                tableWidth,
-                tableHeight,
                 tableIndex,
-                column;
+                target,
+                vertical,
+                horizontal;
 
             if ($.inArray(this, globalTableIndex) != -1) {
+                if (debug) {
+                    console.warn('Wholly has been applied twice on the same table.');
+                }
+
                 return;
             }
 
@@ -172,39 +189,39 @@
                 throw new Error('Wholly works only with tables.');
             }
 
-            table.trigger('wholly');
+            tableIndex = wholly.indexTable(table);
 
-            tableWidth = wholly.calcTableMaxCellLength(table);
-            tableHeight = table.find('tr').length;
-            tableIndex = wholly.generateTableIndexTemplate(tableWidth, tableHeight);
-
-            wholly.indexTable(table, tableIndex);
+            console.log('tableIndex', tableIndex);
             
             table.on('mouseenter', 'td, th', function () {
-                var colspan = parseInt($(this).attr('colspan'), 10) || 1,
-                    cellRealIndex = $(this).data('wholly.index'),
-                    highlightCellFrom,
-                    highlightCellTo;
+                var target = $(this),
+                    colspan = parseInt(target.attr('colspan'), 10) || 1,
+                    rowspan = parseInt(target.attr('rowspan'), 10) || 1,
+                    offsetInMatrix = target.data('wholly.offsetInMatrix');
 
-                column = $(this);
+                if (debug) {
+                    //console.log('offset in matrix', offsetInMatrix);
+                }
 
-                highlightCellFrom = cellRealIndex;
-                highlightCellTo = cellRealIndex + colspan;
+                vertical = $();
+                horizontal = $();
 
                 $.each(tableIndex, function (n, rowIndex) {
-                    $.each(rowIndex.slice(highlightCellFrom, highlightCellTo), function (n, cell) {
-                        column = column.add(cell);
-                    });                    
+                    vertical = vertical.add(rowIndex.slice(offsetInMatrix[0], offsetInMatrix[0] + colspan));
                 });
 
-                column.trigger('wholly.mouseenter');
+                $.each(tableIndex.slice(offsetInMatrix[1], offsetInMatrix[1] + rowspan), function (n, cell) {
+                    horizontal = horizontal.add(cell);
+                });
+
+                vertical.trigger('wholly.mouseenter-vertical');
+                horizontal.trigger('wholly.mouseenter-horizontal');
             });
 
             table.on('mouseleave', 'td, th', function () {
-                column.trigger('wholly.mouseleave');
+                vertical.trigger('wholly.mouseleave-vertical');
+                horizontal.trigger('wholly.mouseleave-horizontal');
             });
-
-            
         });
     };
 }(jQuery));

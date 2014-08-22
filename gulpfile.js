@@ -11,7 +11,17 @@ gulp.task('clean', function (cb) {
     del(['dist'], cb);
 });
 
+gulp.task('test', ['minify'], function (cb) {
+    karma.start({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: true
+    }, cb);
+});
+
+gulp.task('travis', ['clean', 'test']);
+
 gulp.task('version', function () {
+    // @todo
     // Update jQuery/bower json
     // version and dependencies
 });
@@ -26,12 +36,5 @@ gulp.task('minify', function () {
         .pipe(gulp.dest('./dist/'))
         .on('error', gutil.log);
 });
-
-/*gulp.task('test', ['minify'], function (cb) {
-    karma.start({
-        configFile: __dirname + '/karma.conf.js',
-        //singleRun: true
-    }, cb);
-});*/
 
 gulp.task('default');
