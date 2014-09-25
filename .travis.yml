@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+- '0.11'
+- '0.10'
+install:
+- npm install
+notifications:
+  email: false
+env:
+  global:
+    secure: PleRNV3YbH7bkJJ+3N/fSZ+c119MDspnnLzJ1er+h/hhresgSR3Mm44mkDvpUVxK6WxaOQ3EspqYRtcrXST9czq44o3nHkreq+fs9vV4Jt+FHReBR6IXFfOkb2jaZlcXxmw3sWdlyppQRYQP1KE6A13seBQuaCcw67Ycbyw7YGc=

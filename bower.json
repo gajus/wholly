@@ -4,7 +4,7 @@
     "main": "dist/wholly.min.js",
     "license": "BSD-3-Clause",
     "dependencies": {
-        "jquery": "^1"
+        "jquery": ">=1"
     },
     "keywords": [
         "table",

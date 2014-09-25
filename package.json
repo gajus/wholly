@@ -1,0 +1,29 @@
+{
+  "name": "wholly",
+  "description": "jQuery plugin used to select the entire table row and column in response to mouseenter and mouseleave events. Wholly supports table layouts that utilize colspan and rowspan.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gajus/wholly.git"
+  },
+  "version": "2.0.0",
+  "dependencies": {
+    "jquery": "^1"
+  },
+  "devDependencies": {
+    "karma": "^0.12.22",
+    "karma-jasmine": "~0.2.2",
+    "gulp": "^3.8.7",
+    "gulp-util": "^3.0.0",
+    "gulp-uglify": "^0.3.1",
+    "gulp-rename": "^1.2.0",
+    "gulp-header": "^1.0.5",
+    "del": "^0.1.2",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-coveralls": "^0.1.4",
+    "karma-coverage": "^0.2.6",
+    "karma-html2js-preprocessor": "^0.1.0"
+  },
+  "scrips": {
+    "test": "gulp travis"
+  }
+}

@@ -2,16 +2,9 @@
 <html>
 <head>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="../jquery.wholly.js"></script>
+    <script src="../src/wholly.js"></script>
 
-    <style>
-    table { table-layout: fixed; border-collapse: collapse; margin: 20px; float: left; }
-    th,
-    td { width: 50px; height: 50px; background: #ccc; border: 5px solid #fff; }
-
-    th.wholly-highlight,
-    td.wholly-highlight { background: #3879D9; }
-    </style>
+    <link rel="stylesheet" type="text/css" href="./static/css/demo.css">
 
     <script>
     $(function () {
@@ -19,96 +12,184 @@
 
         table.wholly();
 
-        table.on('wholly.mouseenter', 'td, th', function () {
-            $(this).addClass('wholly-highlight');
+        table.on('wholly.mouseenter-horizontal', 'td', function () {
+            $(this).addClass('wholly-highlight-horizontal');
         });
 
-        table.on('wholly.mouseleave', 'td, th', function () {
-            $(this).removeClass('wholly-highlight');
+        table.on('wholly.mouseleave-horizontal', 'td', function () {
+            $(this).removeClass('wholly-highlight-horizontal');
         });
+
+        table.on('wholly.mouseenter-vertical', 'td', function () {
+            $(this).addClass('wholly-highlight-vertical');
+        });
+
+        table.on('wholly.mouseleave-vertical', 'td', function () {
+            $(this).removeClass('wholly-highlight-vertical');
+        });
+
+        $('table td').eq(0).trigger('mouseenter');
+        $('table td').eq(12).trigger('mouseenter');
+        $('table td').eq(24).trigger('mouseenter');
     });
     </script>
 </head>
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
+    <div id="demo">
+        <table class="example-basic">
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="example-horizontal">
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="4"></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="example-vertical">
+            <tbody>
+                <tr>
+                    <td rowspan="2"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td rowspan="3"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="example-full">
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td rowspan="4"></td>
+                    <td></td>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td rowspan="2"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--<table>
         <tbody>
             <tr>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tfoot>
-    </table>
-
-    <table>
-        <thead>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td colspan="2"></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
                 <td colspan="2"></td>
             </tr>
             <tr>
@@ -118,48 +199,18 @@
                 <td></td>
                 <td></td>
             </tr>
-        </tbody>
-        <tfoot>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tfoot>
-    </table>
-
-    <table>
-        <thead>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td rowspan="2"></td>
                 <td colspan="2"></td>
+                <td></td>
+                <td></td>
             </tr>
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
-            <tr>
-                <th rowspan="2"></th>
-                <th colspan="2"></th>
-                <th></th>
-                <th></th>
-            </tr>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-
-        <tbody>
             <tr>
                 <td colspan="5"></td>
             </tr>
@@ -181,9 +232,6 @@
                 <td></td>
                 <td colspan="3"></td>
             </tr>
-        </tbody>
-
-        <tfoot>
             <tr>
                 <td></td>
                 <td></td>
@@ -204,7 +252,7 @@
                 <td></td>
                 <td></td>
             </tr>
-        </tfoot>
-    </table>
+        </tbody>
+    </table>-->
 </body>
 </html>

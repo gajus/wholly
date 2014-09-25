@@ -1,0 +1,38 @@
+body {
+    background: #E7E7E7;
+}
+
+#demo {
+    width: 610px; overflow: hidden; margin: 100px auto;
+
+    .example-horizontal,
+    .example-full {
+        margin-left: 50px;
+    }
+
+    .example-vertical,
+    .example-full {
+        margin-top: 50px;
+    }
+}
+
+table { table-layout: fixed; border-collapse: collapse; float: left; }
+
+td { width: 50px; height: 50px; padding: 0; background: #ccc; border: 5px solid #fff; }
+
+td[colspan],
+td[rowspan] {
+    background: #999;
+}
+
+td.wholly-highlight-horizontal {
+    background: #59ABE3;
+}
+
+td.wholly-highlight-vertical {
+    background: #FF4539;
+}
+
+td:hover {
+    background: #F5AB35;
+}
