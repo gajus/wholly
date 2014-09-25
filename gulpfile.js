@@ -26,14 +26,12 @@ gulp.task('distribute', ['clean'],function () {
         .on('error', gutil.log);
 });
 
-/*gulp.task('test', ['minify'], function (cb) {
+gulp.task('travis', ['default'], function (cb) {
     karma.start({
         configFile: __dirname + '/karma.conf.js',
         singleRun: true
     }, cb);
 });
-
-gulp.task('travis', ['test']);*/
 
 gulp.task('watch', function () {
     gulp.watch('./src/wholly.js', ['default']);
