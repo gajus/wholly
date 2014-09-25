@@ -1,5 +1,6 @@
 {
   "name": "wholly",
+  "description": "jQuery plugin used to select the entire table row and column in response to mouseenter and mouseleave events. Wholly supports table layouts that utilize colspan and rowspan.",
   "repository": {
     "type": "git",
     "url": "git://github.com/gajus/wholly.git"
