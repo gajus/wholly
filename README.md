@@ -35,7 +35,7 @@ Wholly is not limited to setting a particular style. The custom event hooks allo
 
 ## Usage
 
-There are two options that automate highlight:
+There are two options that automate highlighting:
 
 ```js
 $('table').wholly({
