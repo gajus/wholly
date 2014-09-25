@@ -15,7 +15,13 @@
          * Used to make sure that same table is not using Wholly twice.
          */
         globalTableIndex = [],
-        wholly = {};
+        wholly = {},
+        defaultOptions;
+
+    defaultOptions = {
+        highlightHorizontal: null,
+        highlightVertical: null
+    };
     
     /**
      * @param {Object} table jQuery selector referencing a table.
@@ -163,14 +169,15 @@
         return tableIndex;
     };
 
-    $.fn.wholly = function () {
+    $.fn.wholly = function (_options) {
         this.each(function () {
             var table,
                 tableIndex,
                 target,
-                vertical,
                 horizontal,
-                mouseleave;
+                vertical,
+                mouseleave,
+                options = $.extend({}, defaultOptions, _options);
 
             if ($.inArray(this, globalTableIndex) != -1) {
                 if (debug) {
@@ -192,26 +199,38 @@
             
             table.on('mouseenter', 'td, th', function () {
                 var target = $(this),
-                    colspan = parseInt(target.attr('colspan'), 10) || 1,
                     rowspan = parseInt(target.attr('rowspan'), 10) || 1,
+                    colspan = parseInt(target.attr('colspan'), 10) || 1,
                     offsetInMatrix = target.data('wholly.offsetInMatrix');
 
                 // Avoid multiple selections when the columns are selected programmatically.
                 mouseleave();
 
-                vertical = $([]);
                 horizontal = $([]);
-
-                $.each(tableIndex, function (n, rowIndex) {
-                    vertical = vertical.add(rowIndex.slice(offsetInMatrix[0], offsetInMatrix[0] + colspan));
-                });
+                vertical = $([]);
 
                 $.each(tableIndex.slice(offsetInMatrix[1], offsetInMatrix[1] + rowspan), function (n, cell) {
                     horizontal = horizontal.add(cell);
                 });
 
-                vertical.trigger('wholly.mouseenter-vertical');
+                $.each(tableIndex, function (n, rowIndex) {
+                    vertical = vertical.add(rowIndex.slice(offsetInMatrix[0], offsetInMatrix[0] + colspan));
+                });
+
+                if (debug) {
+                    console.log('mouseenter', 'horizontal:', horizontal.length, 'vertical:', vertical.length);
+                }
+
                 horizontal.trigger('wholly.mouseenter-horizontal');
+                vertical.trigger('wholly.mouseenter-vertical');
+
+                if (options.highlightHorizontal) {
+                    horizontal.addClass(options.highlightHorizontal);
+                }
+
+                if (options.highlightVertical) {
+                    vertical.addClass(options.highlightVertical);
+                }
 
                 table.trigger('wholly.mouseenter', {
                     horizontal: horizontal,
@@ -220,19 +239,27 @@
             });
     
             mouseleave = function () {
-                if (!vertical && !horizontal) {
+                if (!horizontal && !vertical) {
                     return
                 }
 
-                vertical.trigger('wholly.mouseleave-vertical');
                 horizontal.trigger('wholly.mouseleave-horizontal');
+                vertical.trigger('wholly.mouseleave-vertical');
+
+                if (options.highlightHorizontal) {
+                    horizontal.removeClass(options.highlightHorizontal);
+                }
+
+                if (options.highlightVertical) {
+                    vertical.removeClass(options.highlightVertical);
+                }
 
                 table.trigger('wholly.mouseleave', {
                     horizontal: horizontal,
                     vertical: vertical
                 });
 
-                vertical = horizontal = undefined;
+                horizontal = vertical = undefined;
             };
 
             table.on('mouseleave', 'td, th', mouseleave);

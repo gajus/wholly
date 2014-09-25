@@ -7,7 +7,7 @@ module.exports = function(config) {
         frameworks: ['jasmine'],
         files: [
             'node_modules/jquery/dist/jquery.min.js',
-            'src/wholly.js',
+            'dist/*',
             'test/*.js',
             'test/fixture/*.html'
         ],
