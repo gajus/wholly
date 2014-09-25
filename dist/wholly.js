@@ -9,7 +9,7 @@
     var /**
          * Enables console logging.
          */
-        debug = true,
+        debug = false,
         /**
          * Index of tables that are using Wholly.
          * Used to make sure that same table is not using Wholly twice.
@@ -163,15 +163,14 @@
         return tableIndex;
     };
 
-
-
     $.fn.wholly = function () {
         this.each(function () {
             var table,
                 tableIndex,
                 target,
                 vertical,
-                horizontal;
+                horizontal,
+                mouseleave;
 
             if ($.inArray(this, globalTableIndex) != -1) {
                 if (debug) {
@@ -190,8 +189,6 @@
             }
 
             tableIndex = wholly.indexTable(table);
-
-            console.log('tableIndex', tableIndex);
             
             table.on('mouseenter', 'td, th', function () {
                 var target = $(this),
@@ -199,12 +196,11 @@
                     rowspan = parseInt(target.attr('rowspan'), 10) || 1,
                     offsetInMatrix = target.data('wholly.offsetInMatrix');
 
-                if (debug) {
-                    //console.log('offset in matrix', offsetInMatrix);
-                }
+                // Avoid multiple selections when the columns are selected programmatically.
+                mouseleave();
 
-                vertical = $();
-                horizontal = $();
+                vertical = $([]);
+                horizontal = $([]);
 
                 $.each(tableIndex, function (n, rowIndex) {
                     vertical = vertical.add(rowIndex.slice(offsetInMatrix[0], offsetInMatrix[0] + colspan));
@@ -216,12 +212,30 @@
 
                 vertical.trigger('wholly.mouseenter-vertical');
                 horizontal.trigger('wholly.mouseenter-horizontal');
-            });
 
-            table.on('mouseleave', 'td, th', function () {
+                table.trigger('wholly.mouseenter', {
+                    horizontal: horizontal,
+                    vertical: vertical
+                });
+            });
+    
+            mouseleave = function () {
+                if (!vertical && !horizontal) {
+                    return
+                }
+
                 vertical.trigger('wholly.mouseleave-vertical');
                 horizontal.trigger('wholly.mouseleave-horizontal');
-            });
+
+                table.trigger('wholly.mouseleave', {
+                    horizontal: horizontal,
+                    vertical: vertical
+                });
+
+                vertical = horizontal = undefined;
+            };
+
+            table.on('mouseleave', 'td, th', mouseleave);
         });
     };
 }(jQuery));

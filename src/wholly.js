@@ -162,7 +162,7 @@
 
         return tableIndex;
     };
-    
+
     $.fn.wholly = function () {
         this.each(function () {
             var table,
@@ -212,6 +212,11 @@
 
                 vertical.trigger('wholly.mouseenter-vertical');
                 horizontal.trigger('wholly.mouseenter-horizontal');
+
+                table.trigger('wholly.mouseenter', {
+                    horizontal: horizontal,
+                    vertical: vertical
+                });
             });
     
             mouseleave = function () {
@@ -221,6 +226,11 @@
 
                 vertical.trigger('wholly.mouseleave-vertical');
                 horizontal.trigger('wholly.mouseleave-horizontal');
+
+                table.trigger('wholly.mouseleave', {
+                    horizontal: horizontal,
+                    vertical: vertical
+                });
 
                 vertical = horizontal = undefined;
             };

@@ -11,22 +11,7 @@ gulp.task('clean', function (cb) {
     del(['dist'], cb);
 });
 
-gulp.task('test', ['minify'], function (cb) {
-    karma.start({
-        configFile: __dirname + '/karma.conf.js',
-        singleRun: true
-    }, cb);
-});
-
-gulp.task('travis', ['clean', 'test']);
-
-gulp.task('version', function () {
-    // @todo
-    // Update jQuery/bower json
-    // version and dependencies
-});
-
-gulp.task('minify', function () {
+gulp.task('distribute', function () {
     return gulp
         .src('./src/wholly.js')
         .pipe(gulp.dest('./dist/'))
@@ -37,4 +22,4 @@ gulp.task('minify', function () {
         .on('error', gutil.log);
 });
 
-gulp.task('default');
+gulp.task('default', ['clean', 'distribute']);
