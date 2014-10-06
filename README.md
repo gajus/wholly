@@ -6,7 +6,7 @@ jQuery plugin used to select the entire table row and column in response to `mou
 [![Build Status](https://travis-ci.org/gajus/wholly.png?branch=master)](https://travis-ci.org/gajus/wholly)
 [![Coverage Status](https://coveralls.io/repos/gajus/wholly/badge.png?branch=master)](https://coveralls.io/r/gajus/wholly?branch=master)
 
-[Interactive demo](http://gajus.com/demo/wholly/demo/).
+[Interactive demo](http://gajus.com/sandbox/wholly/demo/).
 
 ## How does it work?
 
