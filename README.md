@@ -1,10 +1,8 @@
 # Wholly
 
-jQuery plugin used to select the entire table row and column in response to `mouseenter` and `mouseleave` events. Wholly supports table layouts that utilize `colspan` and `rowspan`.
-
-[![NPM version](https://badge.fury.io/js/wholly.svg)](http://badge.fury.io/js/wholly)
 [![Build Status](https://travis-ci.org/gajus/wholly.png?branch=master)](https://travis-ci.org/gajus/wholly)
-[![Coverage Status](https://coveralls.io/repos/gajus/wholly/badge.png?branch=master)](https://coveralls.io/r/gajus/wholly?branch=master)
+
+jQuery plugin used to select the entire table row and column in response to `mouseenter` and `mouseleave` events. Wholly supports table layouts that utilize `colspan` and `rowspan`.
 
 [Interactive demo](http://gajus.com/sandbox/wholly/demo/).
 
