@@ -1,5 +1,9 @@
 /**
- * @version 2.0.0
+* @version 2.0.0
+* @link https://github.com/gajus/wholly for the canonical source repository
+* @license https://github.com/gajus/wholly/blob/master/LICENSE BSD 3-Clause
+*/
+/**
  * @link https://github.com/gajus/wholly for the canonical source repository
  * @license https://github.com/gajus/wholly/blob/master/LICENSE BSD 3-Clause
  */
@@ -240,7 +244,7 @@
     
             mouseleave = function () {
                 if (!horizontal && !vertical) {
-                    return
+                    return;
                 }
 
                 horizontal.trigger('wholly.mouseleave-horizontal');

@@ -6,9 +6,12 @@
     "dependencies": {
         "jquery": ">=1"
     },
+    "description": "jQuery plugin used to select the entire table row and column in response to mouseenter and mouseleave events. Wholly supports table layouts that utilize colspan and rowspan.",
     "keywords": [
         "table",
         "column",
-        "highlight"
+        "highlight",
+        "hover",
+        "event"
     ]
 }

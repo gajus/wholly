@@ -1,11 +1,20 @@
 {
   "name": "wholly",
+  "title": "Table column events hook.",
   "description": "jQuery plugin used to select the entire table row and column in response to mouseenter and mouseleave events. Wholly supports table layouts that utilize colspan and rowspan.",
   "repository": {
     "type": "git",
     "url": "git://github.com/gajus/wholly.git"
   },
+  "keywords": [
+    "table",
+    "column",
+    "highlight",
+    "hover",
+    "event"
+  ],
   "version": "2.0.0",
+  "private": true,
   "dependencies": {
     "jquery": "^1"
   },
@@ -21,7 +30,9 @@
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-coveralls": "^0.1.4",
     "karma-coverage": "^0.2.6",
-    "karma-html2js-preprocessor": "^0.1.0"
+    "karma-html2js-preprocessor": "^0.1.0",
+    "gulp-jshint": "^1.8.5",
+    "jshint-stylish": "^1.0.0"
   },
   "scrips": {
     "test": "gulp travis"
