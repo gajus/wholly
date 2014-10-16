@@ -1,7 +1,7 @@
 # Wholly
 
-[![Build Status](https://travis-ci.org/gajus/contents.png?branch=master)](https://travis-ci.org/gajus/contents)
-[![Bower version](https://badge.fury.io/bo/contents.svg?1)](http://badge.fury.io/bo/contents)
+[![Build Status](https://travis-ci.org/gajus/wholly.png?branch=master&v1)](https://travis-ci.org/gajus/wholly)
+[![Bower version](https://badge.fury.io/bo/wholly.svg?v1)](http://badge.fury.io/bo/wholly)
 [![Tweet Button](./.readme/tweet-button.png?1)](https://twitter.com/intent/tweet?text=Hightlight%20the%20entire%20active%20table%20row%20and%20column%20using%20Wholly,%20%23JavaScript%20%23jQuery%20plugin&url=https://github.com/gajus/wholly&via=kuizinas)
 
 jQuery plugin used to select the entire table row and column in response to `mouseenter` and `mouseleave` events. Wholly supports table layouts that utilize `colspan` and `rowspan`.
