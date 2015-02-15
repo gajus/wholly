@@ -3,14 +3,17 @@
 * @link https://github.com/gajus/wholly for the canonical source repository
 * @license https://github.com/gajus/wholly/blob/master/LICENSE BSD 3-Clause
 */
+'use strict';
+
+/* global jQuery */
+
 /**
  * @link https://github.com/gajus/wholly for the canonical source repository
  * @license https://github.com/gajus/wholly/blob/master/LICENSE BSD 3-Clause
  */
 (function ($) {
-    'use strict';
-
-    var /**
+    var
+        /**
          * Enables console logging.
          */
         debug = false,
@@ -26,7 +29,7 @@
         highlightHorizontal: null,
         highlightVertical: null
     };
-    
+
     /**
      * @param {Object} table jQuery selector referencing a table.
      * @returns {Number} Maximum number of cells across all the table rows.
@@ -65,7 +68,7 @@
      * Matrix is a representation of the subject table, where table cells either
      * with rowspan or colspan are broken apiece. In the matrix, multiple cells
      * can refer to a single cell, row, rowspan or colspan in the subject table.
-     * 
+     *
      * @param {Object} row jQuery selector referencing a table row.
      * @returns {Array}
      */
@@ -142,7 +145,7 @@
                             console.group('x:', x, 'colspan:', colspan, 'rowspan:', rowspan, 'cell:', cell[0]);
                         } else {
                             console.log('x:', x, 'colspan:', colspan, 'rowspan:', rowspan, 'cell:', cell[0]);
-                        }                            
+                        }
                     }
 
                     for (i = 0; i < rowspan; i++) {
@@ -150,7 +153,7 @@
                             if (debug) {
                                 console.log('relative row:', i, 'relative cell:', j, 'absolute row:', y + i, 'absolute cell:', x + j);
                             }
-                            
+
                             tableIndex[y + i][x + j] = cell[0];
                         }
                     }
@@ -177,13 +180,12 @@
         this.each(function () {
             var table,
                 tableIndex,
-                target,
                 horizontal,
                 vertical,
                 mouseleave,
                 options = $.extend({}, defaultOptions, _options);
 
-            if ($.inArray(this, globalTableIndex) != -1) {
+            if ($.inArray(this, globalTableIndex) !== -1) {
                 if (debug) {
                     console.warn('Wholly has been applied twice on the same table.');
                 }
@@ -200,7 +202,7 @@
             }
 
             tableIndex = wholly.indexTable(table);
-            
+
             table.on('mouseenter', 'td, th', function () {
                 var target = $(this),
                     rowspan = parseInt(target.attr('rowspan'), 10) || 1,
@@ -241,7 +243,7 @@
                     vertical: vertical
                 });
             });
-    
+
             mouseleave = function () {
                 if (!horizontal && !vertical) {
                     return;

@@ -5,7 +5,7 @@ var pkg = require('./package.json'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
     header = require('gulp-header'),
-    jshint = require('gulp-jshint'),
+    eslint = require('gulp-eslint'),
     fs = require('fs'),
     del = require('del');
 
@@ -15,14 +15,14 @@ gulp.task('clean', ['lint'], function (cb) {
 
 gulp.task('lint', function () {
     return gulp
-        .src('./src/*.js')
-        .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'));
+        .src(['./src/*.js', './src/tests/*.js'])
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failOnError());
 });
 
 gulp.task('distribute', ['clean'], function (cb) {
-    var bower = require('./bower.json'),
-        jquery = require('./wholly.jquery.json');
+    var bower = require('./bower.json');
 
     gulp
         .src('./src/wholly.js')
@@ -39,15 +39,7 @@ gulp.task('distribute', ['clean'], function (cb) {
     bower.version = pkg.version;
     bower.keywords = pkg.keywords;
 
-    jquery.name = pkg.name;
-    jquery.description = pkg.description
-    jquery.version = pkg.version;
-    jquery.keywords = pkg.keywords;
-    jquery.title = pkg.title;;
-
-    fs.writeFile('./bower.json', JSON.stringify(bower, null, 4), function () {
-        fs.writeFile('./wholly.jquery.json', JSON.stringify(jquery, null, 4), cb);
-    });
+    fs.writeFile('./bower.json', JSON.stringify(bower, null, 4), cb);
 });
 
 gulp.task('travis', ['default'], function (cb) {
